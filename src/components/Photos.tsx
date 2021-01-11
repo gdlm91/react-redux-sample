@@ -1,27 +1,23 @@
 import * as React from "react";
 
 import store from "../redux";
+import { addPhoto, removeLastPhoto } from "../redux/actions/photos";
 
 const Photos: React.FunctionComponent = () => {
   const handleAddPhoto = () => {
-    store.dispatch({
-      type: "PHOTOS_ADD",
-      payload: {
-        photo: {
-          albumId: 1,
-          id: 1,
-          title: "My Photo",
-          url: "google.com",
-          thumbnailUrl: "google.com",
-        },
-      },
-    });
+    store.dispatch(
+      addPhoto({
+        albumId: 1,
+        id: 1,
+        title: "My Photo",
+        url: "image.jpg",
+        thumbnailUrl: "thumbnail.jpg",
+      })
+    );
   };
 
   const handleRemoveLastPhoto = () => {
-    store.dispatch({
-      type: "PHOTOS_REMOVE_LAST",
-    });
+    store.dispatch(removeLastPhoto());
   };
 
   return (

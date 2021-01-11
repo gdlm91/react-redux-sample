@@ -1,25 +1,21 @@
 import * as React from "react";
 
 import store from "../redux";
+import { addAlbum, removeLastAlbum } from "../redux/actions/albums";
 
 const Albums: React.FunctionComponent = () => {
   const handleAddAlbum = () => {
-    store.dispatch({
-      type: "ALBUMS_ADD",
-      payload: {
-        album: {
-          userId: 1,
-          id: 1,
-          title: "My title",
-        },
-      },
-    });
+    store.dispatch(
+      addAlbum({
+        id: 1,
+        title: "My album",
+        userId: 1,
+      })
+    );
   };
 
   const handleRemoveLastAlbum = () => {
-    store.dispatch({
-      type: "ALBUMS_REMOVE_LAST",
-    });
+    store.dispatch(removeLastAlbum());
   };
 
   return (

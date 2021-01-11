@@ -1,13 +1,14 @@
 import { handleActions } from "redux-actions";
 import { AppState } from "../../types";
+import { addPhoto, removeLastPhoto } from "../actions/photos";
 
 const photosReducer = handleActions<AppState["photos"], any>(
   {
-    PHOTOS_ADD: (state, action) => {
+    [addPhoto.toString()]: (state, action) => {
       return [...state, action.payload.photo];
     },
 
-    PHOTOS_REMOVE_LAST: (state, action) => {
+    [removeLastPhoto.toString()]: (state, action) => {
       return [...state.slice(0, -1)];
     },
   },
