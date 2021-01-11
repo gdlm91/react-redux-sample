@@ -1,12 +1,16 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addAlbum, removeLastAlbum } from "../redux/actions/albums";
+import { addAlbum, loadAlbums, removeLastAlbum } from "../redux/actions/albums";
 import { getAllAlbums } from "../redux/selectors/albums";
 
 const Albums: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const albums = useSelector(getAllAlbums);
+
+  React.useEffect(() => {
+    dispatch(loadAlbums());
+  }, []);
 
   const handleAddAlbum = () => {
     dispatch(
