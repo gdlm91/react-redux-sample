@@ -1,23 +1,12 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import store from "../redux";
 import { addAlbum, removeLastAlbum } from "../redux/actions/albums";
-import { Album } from "../types";
+import { getAllAlbums } from "../redux/selectors/albums";
 
 const Albums: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const [albums, setAlbums] = React.useState<Album[]>([]);
-
-  React.useEffect(() => {
-    const unsubscribe = store.subscribe(() => {
-      const { albums: _albums } = store.getState();
-
-      setAlbums(_albums);
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const albums = useSelector(getAllAlbums);
 
   const handleAddAlbum = () => {
     dispatch(
