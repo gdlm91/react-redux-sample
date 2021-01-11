@@ -1,11 +1,13 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
 
-import store from "../redux";
 import { addPhoto, removeLastPhoto } from "../redux/actions/photos";
 
 const Photos: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
+
   const handleAddPhoto = () => {
-    store.dispatch(
+    dispatch(
       addPhoto({
         albumId: 1,
         id: 1,
@@ -17,7 +19,7 @@ const Photos: React.FunctionComponent = () => {
   };
 
   const handleRemoveLastPhoto = () => {
-    store.dispatch(removeLastPhoto());
+    dispatch(removeLastPhoto());
   };
 
   return (
